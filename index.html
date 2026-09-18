@@ -4,1207 +4,794 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090d">
-
-<title>Happy Birthday, Akifa</title>
+<title>happy birthday, akifa.</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500;1,600&display=swap" rel="stylesheet">
 
 <style>
-:root {
-    --bg: #08090d;
-    --bg-soft: #0e1016;
-    --card: rgba(255,255,255,.055);
-    --border: rgba(255,255,255,.11);
-    --text: #f6f4f1;
-    --muted: #a7a7ad;
-    --accent: #f1c7cf;
-    --accent-2: #dca9b5;
-    --white: #ffffff;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+html{
+    scroll-behavior:smooth;
 }
 
-html {
-    scroll-behavior: smooth;
+body{
+    background:#08090d;
+    color:#f5f5f5;
+    font-family:"DM Sans",sans-serif;
+    overflow-x:hidden;
 }
 
-body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: "DM Sans", sans-serif;
-    overflow-x: hidden;
-}
-
-/* ================= BACKGROUND ================= */
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: -3;
-
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-3;
     background:
-        radial-gradient(
-            circle at 20% 10%,
-            rgba(231, 171, 185, .15),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 85% 35%,
-            rgba(197, 145, 161, .10),
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 50% 90%,
-            rgba(255,255,255,.045),
-            transparent 35%
-        );
-}
-
-body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1000;
-    opacity: .035;
-
-    background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
-}
-
-/* ================= START SCREEN ================= */
-
-#startScreen {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 25px;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(219,169,181,.13),
-            transparent 38%
-        ),
+        radial-gradient(circle at 15% 15%,rgba(255,255,255,.07),transparent 28%),
+        radial-gradient(circle at 85% 70%,rgba(255,80,120,.08),transparent 30%),
         #08090d;
-
-    transition:
-        opacity .8s ease,
-        visibility .8s ease;
 }
 
-#startScreen.hide {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+    opacity:.045;
+    pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E");
 }
 
-.start-content {
-    width: min(600px, 100%);
-    text-align: center;
+::selection{
+    background:#fff;
+    color:#08090d;
 }
 
-.start-date {
-    color: var(--accent);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: .35em;
-    text-transform: uppercase;
-    margin-bottom: 25px;
+a{
+    color:inherit;
+    text-decoration:none;
 }
 
-.start-content h1 {
-    font-family: "Playfair Display", serif;
-    font-size: clamp(42px, 10vw, 82px);
-    line-height: .98;
-    font-weight: 500;
-    margin-bottom: 22px;
+button{
+    font-family:inherit;
 }
 
-.start-content h1 em {
-    color: var(--accent);
+.container{
+    width:min(1080px,90%);
+    margin:auto;
 }
 
-.start-content p {
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.8;
-    max-width: 440px;
-    margin: 0 auto 35px;
+/* =========================
+   START SCREEN
+========================= */
+
+#startScreen{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background:#08090d;
+    transition:opacity 1s ease,visibility 1s ease;
 }
 
-.open-btn {
-    border: 1px solid rgba(255,255,255,.18);
-    background: rgba(255,255,255,.07);
-    color: white;
-
-    padding: 15px 28px;
-    border-radius: 50px;
-
-    font-family: inherit;
-    font-size: 14px;
-    font-weight: 600;
-
-    cursor: pointer;
-    transition: .3s;
+#startScreen.hide{
+    opacity:0;
+    visibility:hidden;
 }
 
-.open-btn:hover {
-    background: white;
-    color: #08090d;
-    transform: translateY(-3px);
+.start-content{
+    width:min(90%,600px);
+    animation:fadeUp 1.2s ease;
 }
 
-/* ================= MUSIC ================= */
-
-.music-control {
-    position: fixed;
-    z-index: 2000;
-
-    right: 20px;
-    bottom: 20px;
-
-    width: 48px;
-    height: 48px;
-
-    border-radius: 50%;
-    border: 1px solid var(--border);
-
-    background: rgba(15,16,22,.85);
-    backdrop-filter: blur(12px);
-
-    color: white;
-    cursor: pointer;
-
-    font-size: 18px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-    pointer-events: none;
-
-    transition: .3s;
+.start-date{
+    font-size:12px;
+    letter-spacing:5px;
+    text-transform:uppercase;
+    color:#aaa;
+    margin-bottom:22px;
 }
 
-.music-control.show {
-    opacity: 1;
-    pointer-events: auto;
+.start-content h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(42px,9vw,80px);
+    font-weight:500;
+    line-height:1;
+    margin-bottom:25px;
 }
 
-/* ================= MAIN ================= */
-
-main {
-    opacity: 0;
-    transition: opacity 1s ease;
+.start-content p{
+    color:#999;
+    font-size:15px;
+    line-height:1.8;
+    margin:auto;
+    max-width:460px;
 }
 
-main.show {
-    opacity: 1;
+.open-btn{
+    margin-top:38px;
+    padding:15px 28px;
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:50px;
+    color:#fff;
+    background:rgba(255,255,255,.05);
+    cursor:pointer;
+    transition:.3s;
 }
 
-section {
-    position: relative;
-    width: min(1100px, calc(100% - 40px));
-    margin: auto;
+.open-btn:hover{
+    background:#fff;
+    color:#08090d;
+    transform:translateY(-3px);
 }
 
-/* ================= HERO ================= */
+/* =========================
+   MUSIC
+========================= */
 
-.hero {
-    min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-    padding: 100px 0 80px;
+.music-btn{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:1000;
+    width:48px;
+    height:48px;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.2);
+    background:rgba(20,20,25,.8);
+    color:white;
+    backdrop-filter:blur(10px);
+    cursor:pointer;
+    font-size:18px;
 }
 
-.hero-image-wrap {
-    width: min(330px, 75vw);
-    aspect-ratio: 4 / 5;
+/* =========================
+   HERO
+========================= */
 
-    margin: 0 auto 50px;
-
-    position: relative;
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    position:relative;
+    padding:80px 0;
 }
 
-.hero-image-wrap::before {
-    content: "";
-    position: absolute;
-    inset: -15px;
-
-    border: 1px solid rgba(255,255,255,.10);
-    border-radius: 180px 180px 20px 20px;
-
-    transform: rotate(3deg);
+.hero-inner{
+    width:min(800px,90%);
 }
 
-.hero-image {
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-
-    border-radius: 180px 180px 20px 20px;
-
-    display: block;
-
-    filter: saturate(.92);
+.hero-photo{
+    width:150px;
+    height:150px;
+    object-fit:cover;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.2);
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+    margin-bottom:30px;
+    animation:float 5s ease-in-out infinite;
 }
 
-.hero-text {
-    text-align: center;
+.hero-date{
+    font-size:12px;
+    letter-spacing:6px;
+    color:#aaa;
+    text-transform:uppercase;
+    margin-bottom:20px;
 }
 
-.eyebrow {
-    color: var(--accent);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: .3em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
+.hero h1{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(48px,10vw,100px);
+    font-weight:500;
+    line-height:.95;
+    margin-bottom:30px;
 }
 
-.hero h2 {
-    font-family: "Playfair Display", serif;
-    font-weight: 500;
-
-    font-size: clamp(45px, 9vw, 85px);
-    line-height: .98;
-
-    margin-bottom: 25px;
+.hero-description{
+    max-width:550px;
+    margin:auto;
+    color:#999;
+    font-size:15px;
+    line-height:1.9;
 }
 
-.hero h2 em {
-    color: var(--accent);
+.scroll-hint{
+    position:absolute;
+    bottom:30px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#777;
+    font-size:11px;
+    letter-spacing:3px;
+    text-transform:uppercase;
 }
 
-.hero-description {
-    max-width: 500px;
-    margin: auto;
-
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.8;
+.scroll-hint::after{
+    content:"";
+    display:block;
+    width:1px;
+    height:40px;
+    background:#555;
+    margin:12px auto 0;
 }
 
-.scroll-hint {
-    text-align: center;
-    margin-top: 70px;
+/* =========================
+   SECTIONS
+========================= */
 
-    color: #777981;
-    font-size: 11px;
-    letter-spacing: .2em;
-    text-transform: uppercase;
+section{
+    padding:120px 0;
 }
 
-.scroll-line {
-    width: 1px;
-    height: 45px;
-    background: rgba(255,255,255,.18);
-    margin: 12px auto 0;
+.section-label{
+    color:#777;
+    font-size:11px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    margin-bottom:18px;
 }
 
-/* ================= GENERAL SECTION ================= */
-
-.section {
-    padding: 120px 0;
+.section-title{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(35px,6vw,60px);
+    font-weight:500;
+    line-height:1.1;
 }
 
-.section-header {
-    margin-bottom: 55px;
+.section-description{
+    color:#999;
+    max-width:580px;
+    line-height:1.9;
+    margin-top:22px;
 }
 
-.section-number {
-    color: #777981;
-    font-size: 11px;
-    letter-spacing: .25em;
-    margin-bottom: 16px;
+/* =========================
+   MINI GAME
+========================= */
+
+.game-section{
+    text-align:center;
 }
 
-.section-title {
-    font-family: "Playfair Display", serif;
-    font-weight: 500;
-
-    font-size: clamp(38px, 7vw, 65px);
-    line-height: 1;
+.game-box{
+    margin:45px auto 0;
+    max-width:600px;
+    min-height:300px;
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:25px;
+    padding:40px 25px;
+    background:rgba(255,255,255,.025);
 }
 
-.section-title em {
-    color: var(--accent);
+.game-title{
+    font-family:"Playfair Display",serif;
+    font-size:28px;
 }
 
-/* ================= GAME ================= */
-
-.game-box {
-    padding: 35px;
-
-    border: 1px solid var(--border);
-    border-radius: 25px;
-
-    background: var(--card);
-
-    text-align: center;
+.game-counter{
+    color:#888;
+    margin-top:10px;
 }
 
-.game-title {
-    font-family: "Playfair Display", serif;
-    font-size: 28px;
-    margin-bottom: 10px;
+.hearts{
+    position:relative;
+    height:170px;
+    margin-top:20px;
 }
 
-.game-description {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 25px;
+.heart{
+    position:absolute;
+    border:0;
+    background:none;
+    color:#ff6d8d;
+    font-size:34px;
+    cursor:pointer;
+    transition:.25s;
+    animation:heartbeat 1.5s infinite;
 }
 
-.heart-counter {
-    margin-bottom: 25px;
-    color: var(--accent);
-    font-size: 14px;
-    font-weight: 600;
+.heart:hover{
+    transform:scale(1.25);
 }
 
-.hearts-game {
-    min-height: 230px;
-    position: relative;
-
-    border-radius: 20px;
-    background: rgba(0,0,0,.18);
-    overflow: hidden;
+.heart:nth-child(1){
+    left:15%;
+    top:25%;
 }
 
-.game-heart {
-    position: absolute;
-
-    border: 0;
-    background: none;
-
-    color: var(--accent);
-
-    font-size: 34px;
-
-    cursor: pointer;
-
-    animation: floatHeart 2.5s ease-in-out infinite;
-
-    transition: transform .2s, opacity .3s;
+.heart:nth-child(2){
+    left:48%;
+    top:60%;
 }
 
-.game-heart:hover {
-    transform: scale(1.3);
+.heart:nth-child(3){
+    right:15%;
+    top:20%;
 }
 
-.game-heart.found {
-    opacity: 0;
-    pointer-events: none;
+.heart.found{
+    opacity:.15;
+    pointer-events:none;
+    animation:none;
 }
 
-@keyframes floatHeart {
-    0%,100% {
-        transform: translateY(0) rotate(-5deg);
-    }
+/* =========================
+   ABOUT
+========================= */
 
-    50% {
-        transform: translateY(-10px) rotate(5deg);
-    }
+.reason-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+    margin-top:45px;
 }
 
-.game-success {
-    display: none;
-
-    padding: 30px;
-
-    text-align: center;
+.reason-card{
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:18px;
+    padding:25px;
+    background:rgba(255,255,255,.025);
+    cursor:pointer;
+    transition:.3s;
 }
 
-.game-success.show {
-    display: block;
+.reason-card:hover{
+    background:rgba(255,255,255,.055);
+    transform:translateY(-3px);
 }
 
-.game-success strong {
-    display: block;
-
-    font-family: "Playfair Display", serif;
-    font-size: 27px;
-
-    margin-bottom: 8px;
+.reason-number{
+    color:#666;
+    font-size:12px;
+    margin-bottom:15px;
 }
 
-.game-success span {
-    color: var(--muted);
-    font-size: 14px;
+.reason-card h3{
+    font-size:18px;
+    font-weight:500;
 }
 
-/* ================= REASONS ================= */
-
-.reason-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+.reason-text{
+    color:#888;
+    line-height:1.8;
+    margin-top:15px;
+    display:none;
 }
 
-.reason-card {
-    border: 1px solid var(--border);
-    background: var(--card);
-
-    border-radius: 20px;
-    padding: 25px;
-
-    cursor: pointer;
-
-    transition: .3s;
+.reason-card.active .reason-text{
+    display:block;
 }
 
-.reason-card:hover {
-    border-color: rgba(255,255,255,.25);
-    transform: translateY(-3px);
+/* =========================
+   STORY
+========================= */
+
+.timeline{
+    margin-top:55px;
+    border-left:1px solid rgba(255,255,255,.15);
+    padding-left:35px;
 }
 
-.reason-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 15px;
+.timeline-item{
+    position:relative;
+    padding-bottom:55px;
 }
 
-.reason-card h3 {
-    font-size: 16px;
-    font-weight: 600;
+.timeline-item:last-child{
+    padding-bottom:0;
 }
 
-.reason-number {
-    color: #73757d;
-    font-size: 12px;
+.timeline-item::before{
+    content:"";
+    position:absolute;
+    width:9px;
+    height:9px;
+    background:#fff;
+    border-radius:50%;
+    left:-40px;
+    top:5px;
 }
 
-.reason-content {
-    max-height: 0;
-    overflow: hidden;
-
-    transition: max-height .5s ease;
+.timeline-date{
+    color:#777;
+    font-size:11px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    margin-bottom:10px;
 }
 
-.reason-content p {
-    padding-top: 18px;
-
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.8;
+.timeline h3{
+    font-family:"Playfair Display",serif;
+    font-size:30px;
+    font-weight:500;
 }
 
-.reason-card.active .reason-content {
-    max-height: 200px;
+.timeline p{
+    color:#888;
+    line-height:1.8;
+    max-width:650px;
+    margin-top:10px;
 }
 
-/* ================= STORY ================= */
+/* =========================
+   OUR MEMORIES
+========================= */
 
-.timeline {
-    position: relative;
-    margin-top: 30px;
+.memories{
+    text-align:center;
 }
 
-.timeline::before {
-    content: "";
-
-    position: absolute;
-    left: 10px;
-    top: 0;
-    bottom: 0;
-
-    width: 1px;
-
-    background: rgba(255,255,255,.12);
+.memories .section-description{
+    margin-left:auto;
+    margin-right:auto;
 }
 
-.timeline-item {
-    position: relative;
-
-    padding-left: 45px;
-    padding-bottom: 50px;
+.gallery{
+    margin-top:50px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
 }
 
-.timeline-item:last-child {
-    padding-bottom: 0;
+.gallery-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:14px;
+    aspect-ratio:1/1.2;
+    background:#111;
 }
 
-.timeline-dot {
-    position: absolute;
+.gallery-item:nth-child(2),
+.gallery-item:nth-child(5),
+.gallery-item:nth-child(8){
+    transform:translateY(25px);
+}
 
-    left: 4px;
-    top: 5px;
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:transform .7s ease,filter .7s ease;
+}
 
-    width: 13px;
-    height: 13px;
+.gallery-item:hover img{
+    transform:scale(1.06);
+    filter:brightness(.8);
+}
 
-    border-radius: 50%;
+/* =========================
+   FOTO KECIL + TEXT TAMBAHAN
+========================= */
 
-    background: var(--accent);
+.special-message{
+    text-align:center;
+    padding-top:100px;
+}
 
+.small-photo-wrap{
+    display:flex;
+    justify-content:center;
+    margin-bottom:30px;
+}
+
+.small-photo{
+    width:130px;
+    height:130px;
+    object-fit:cover;
+    border-radius:50%;
+    border:1px solid rgba(255,255,255,.2);
     box-shadow:
-        0 0 0 5px rgba(241,199,207,.08);
+        0 15px 50px rgba(0,0,0,.45),
+        0 0 0 8px rgba(255,255,255,.025);
+    transition:.5s;
 }
 
-.timeline-date {
-    color: var(--accent);
-
-    font-size: 11px;
-    font-weight: 600;
-
-    letter-spacing: .2em;
-    text-transform: uppercase;
-
-    margin-bottom: 10px;
+.small-photo:hover{
+    transform:scale(1.05);
 }
 
-.timeline-item h3 {
-    font-family: "Playfair Display", serif;
-    font-size: 28px;
-    font-weight: 500;
-
-    margin-bottom: 10px;
+.special-message-text{
+    max-width:700px;
+    margin:auto;
+    font-family:"Playfair Display",serif;
+    font-style:italic;
+    font-size:clamp(22px,4vw,34px);
+    line-height:1.6;
+    color:#eee;
 }
 
-.timeline-item p {
-    max-width: 600px;
+/* =========================
+   ENVELOPE
+========================= */
 
-    color: var(--muted);
-
-    font-size: 14px;
-    line-height: 1.8;
+.letter-section{
+    text-align:center;
 }
 
-/* ================= OUR MEMORIES ================= */
-
-.memories {
-    width: 100%;
+.envelope{
+    width:260px;
+    height:175px;
+    margin:60px auto 0;
+    position:relative;
+    cursor:pointer;
+    perspective:800px;
 }
 
-.memories-title {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(42px, 9vw, 78px);
-    font-weight: 500;
-
-    margin-bottom: 45px;
+.envelope-body{
+    position:absolute;
+    inset:0;
+    background:#15161b;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:10px;
+    overflow:hidden;
 }
 
-.memories-title em {
-    color: var(--accent);
+.envelope-flap{
+    position:absolute;
+    top:0;
+    left:0;
+    width:0;
+    height:0;
+    border-left:130px solid transparent;
+    border-right:130px solid transparent;
+    border-top:90px solid #26272d;
+    z-index:3;
+    transform-origin:top;
+    transition:transform .8s ease;
 }
 
-/* NO CAPTION / NO SMALL TEXT */
-
-.gallery {
-    display: grid;
-
-    grid-template-columns: repeat(12, 1fr);
-    gap: 12px;
+.envelope-heart{
+    position:absolute;
+    left:50%;
+    top:52%;
+    transform:translate(-50%,-50%);
+    font-size:30px;
+    z-index:4;
 }
 
-.gallery-item {
-    position: relative;
-
-    overflow: hidden;
-
-    border-radius: 16px;
-
-    min-height: 250px;
-
-    background: #101116;
-
-    cursor: pointer;
+.envelope.open .envelope-flap{
+    transform:rotateX(180deg);
 }
 
-.gallery-item:nth-child(1) {
-    grid-column: span 7;
-    grid-row: span 2;
+.letter{
+    display:none;
+    max-width:780px;
+    margin:60px auto 0;
+    padding:45px 35px;
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.025);
+    border-radius:20px;
+    text-align:left;
+    animation:fadeUp .8s ease;
 }
 
-.gallery-item:nth-child(2) {
-    grid-column: span 5;
+.letter.show{
+    display:block;
 }
 
-.gallery-item:nth-child(3) {
-    grid-column: span 5;
+.letter-title{
+    font-family:"Playfair Display",serif;
+    font-size:35px;
+    margin-bottom:30px;
 }
 
-.gallery-item:nth-child(4) {
-    grid-column: span 4;
+.letter p{
+    color:#aaa;
+    font-size:15px;
+    line-height:2;
+    margin-bottom:20px;
 }
 
-.gallery-item:nth-child(5) {
-    grid-column: span 4;
+.letter .big-ending{
+    color:#fff;
+    font-family:"Playfair Display",serif;
+    font-size:22px;
+    text-align:center;
+    margin-top:35px;
 }
 
-.gallery-item:nth-child(6) {
-    grid-column: span 4;
+/* =========================
+   FINAL
+========================= */
+
+.final{
+    min-height:90vh;
+    display:flex;
+    align-items:center;
+    text-align:center;
 }
 
-.gallery-item:nth-child(7) {
-    grid-column: span 5;
+.final-content{
+    width:100%;
 }
 
-.gallery-item:nth-child(8) {
-    grid-column: span 7;
+.final-photo{
+    width:min(330px,75vw);
+    height:min(420px,90vw);
+    object-fit:cover;
+    border-radius:20px;
+    margin-bottom:40px;
+    box-shadow:0 30px 80px rgba(0,0,0,.5);
 }
 
-.gallery-item:nth-child(9) {
-    grid-column: span 6;
+.final h2{
+    font-family:"Playfair Display",serif;
+    font-size:clamp(48px,9vw,90px);
+    font-weight:500;
 }
 
-.gallery-item:nth-child(10) {
-    grid-column: span 6;
+.final-name{
+    font-size:13px;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    color:#888;
+    margin-top:18px;
 }
 
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-
-    min-height: 250px;
-
-    object-fit: cover;
-
-    display: block;
-
-    transition:
-        transform .6s ease,
-        filter .6s ease;
+.final p{
+    max-width:550px;
+    margin:25px auto;
+    color:#999;
+    line-height:1.9;
 }
 
-.gallery-item:hover img {
-    transform: scale(1.05);
-    filter: brightness(.8);
+.signature{
+    margin-top:45px;
+    font-family:"Playfair Display",serif;
+    font-style:italic;
+    font-size:25px;
 }
 
-/* ================= LIGHTBOX ================= */
+/* =========================
+   CONFETTI
+========================= */
 
-.lightbox {
-    position: fixed;
-    inset: 0;
-
-    z-index: 9000;
-
-    background: rgba(0,0,0,.94);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: .3s;
+.confetti{
+    position:fixed;
+    width:7px;
+    height:12px;
+    top:-20px;
+    z-index:9998;
+    pointer-events:none;
+    animation:confettiFall 3s linear forwards;
 }
 
-.lightbox.show {
-    opacity: 1;
-    visibility: visible;
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.floating-heart{
+    position:fixed;
+    bottom:-30px;
+    color:rgba(255,100,130,.35);
+    pointer-events:none;
+    z-index:-1;
+    animation:floatHeart linear forwards;
 }
 
-.lightbox img {
-    max-width: 95vw;
-    max-height: 90vh;
-
-    object-fit: contain;
-
-    border-radius: 12px;
-}
-
-.lightbox-close {
-    position: absolute;
-
-    right: 25px;
-    top: 20px;
-
-    width: 45px;
-    height: 45px;
-
-    border: 1px solid rgba(255,255,255,.2);
-    border-radius: 50%;
-
-    background: rgba(255,255,255,.07);
-
-    color: white;
-
-    font-size: 24px;
-
-    cursor: pointer;
-}
-
-/* ================= LETTER ================= */
-
-.letter-section {
-    text-align: center;
-}
-
-.envelope {
-    width: min(500px, 90vw);
-    height: 300px;
-
-    margin: 50px auto 0;
-
-    position: relative;
-
-    cursor: pointer;
-
-    perspective: 1000px;
-}
-
-.envelope-body {
-    position: absolute;
-    inset: 0;
-
-    background: #d6aeb7;
-
-    border-radius: 8px;
-
-    box-shadow:
-        0 25px 80px rgba(0,0,0,.35);
-}
-
-.envelope-body::before,
-.envelope-body::after {
-    content: "";
-
-    position: absolute;
-
-    bottom: 0;
-
-    width: 0;
-    height: 0;
-
-    border-style: solid;
-
-    z-index: 2;
-}
-
-.envelope-body::before {
-    left: 0;
-
-    border-width: 150px 250px 0 0;
-    border-color: #c59aa5 transparent transparent transparent;
-}
-
-.envelope-body::after {
-    right: 0;
-
-    border-width: 150px 0 0 250px;
-    border-color: #b98c98 transparent transparent transparent;
-}
-
-.envelope-flap {
-    position: absolute;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    z-index: 4;
-
-    background: #e1bdc5;
-
-    clip-path: polygon(0 0, 50% 55%, 100% 0);
-
-    transform-origin: top;
-
-    transition: transform .8s ease;
-
-    backface-visibility: hidden;
-}
-
-.envelope.open .envelope-flap {
-    transform: rotateX(180deg);
-}
-
-.envelope-label {
-    position: absolute;
-
-    z-index: 5;
-
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
-
-    color: #543a40;
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 25px;
-
-    white-space: nowrap;
-}
-
-/* ================= LETTER MODAL ================= */
-
-.letter-modal {
-    position: fixed;
-    inset: 0;
-
-    z-index: 8000;
-
-    background: rgba(0,0,0,.88);
-
-    backdrop-filter: blur(10px);
-
-    padding: 25px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: .4s;
-}
-
-.letter-modal.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.letter-paper {
-    width: min(700px, 100%);
-    max-height: 88vh;
-
-    overflow-y: auto;
-
-    background:
-        linear-gradient(
-            135deg,
-            #f7f1e9,
-            #efe5d8
-        );
-
-    color: #3e3430;
-
-    border-radius: 15px;
-
-    padding: clamp(28px, 6vw, 55px);
-
-    box-shadow:
-        0 40px 100px rgba(0,0,0,.55);
-
-    position: relative;
-}
-
-.letter-close {
-    position: absolute;
-
-    right: 15px;
-    top: 15px;
-
-    width: 38px;
-    height: 38px;
-
-    border: 1px solid rgba(0,0,0,.12);
-    border-radius: 50%;
-
-    background: rgba(0,0,0,.05);
-
-    color: #3e3430;
-
-    cursor: pointer;
-
-    font-size: 20px;
-}
-
-.letter-paper h2 {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(30px, 7vw, 48px);
-
-    font-weight: 500;
-
-    margin-bottom: 30px;
-}
-
-.letter-text {
-    font-size: 14px;
-    line-height: 2;
-
-    white-space: pre-line;
-}
-
-.letter-signature {
-    margin-top: 35px;
-
-    text-align: right;
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 22px;
-}
-
-/* ================= FINAL ================= */
-
-.final-section {
-    min-height: 100vh;
-
-    display: flex;
-    flex-direction: column;
-
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 100px 0;
-}
-
-.final-photo {
-    width: min(270px, 70vw);
-    height: 340px;
-
-    object-fit: cover;
-
-    border-radius: 150px 150px 20px 20px;
-
-    margin-bottom: 45px;
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.4);
-}
-
-.final-section h2 {
-    font-family: "Playfair Display", serif;
-
-    font-size: clamp(50px, 11vw, 100px);
-
-    line-height: .95;
-
-    font-weight: 500;
-
-    margin-bottom: 20px;
-}
-
-.final-name {
-    color: var(--accent);
-
-    font-family: "Playfair Display", serif;
-
-    font-size: 28px;
-
-    margin-bottom: 25px;
-}
-
-.final-message {
-    color: var(--muted);
-
-    max-width: 500px;
-
-    font-size: 14px;
-    line-height: 1.9;
-}
-
-.final-love {
-    margin-top: 45px;
-
-    font-family: "Playfair Display", serif;
-
-    font-style: italic;
-
-    color: var(--accent);
-
-    font-size: 22px;
-}
-
-.signature {
-    margin-top: 45px;
-
-    color: #777981;
-
-    font-size: 11px;
-
-    letter-spacing: .3em;
-
-    text-transform: uppercase;
-}
-
-/* ================= FLOATING HEARTS ================= */
-
-.floating-heart {
-    position: fixed;
-
-    bottom: -30px;
-
-    z-index: 1500;
-
-    color: var(--accent);
-
-    pointer-events: none;
-
-    animation:
-        riseHeart linear forwards;
-}
-
-@keyframes riseHeart {
-    0% {
-        opacity: 0;
-        transform: translateY(0) scale(.7);
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
     }
-
-    10% {
-        opacity: .8;
-    }
-
-    100% {
-        opacity: 0;
-        transform:
-            translateY(-110vh)
-            translateX(var(--drift))
-            scale(1.2);
+    to{
+        opacity:1;
+        transform:translateY(0);
     }
 }
 
-/* ================= CONFETTI ================= */
-
-.confetti {
-    position: fixed;
-
-    top: -20px;
-
-    z-index: 9998;
-
-    width: 7px;
-    height: 12px;
-
-    background: white;
-
-    pointer-events: none;
-
-    animation: confettiFall 3s linear forwards;
-}
-
-@keyframes confettiFall {
-    to {
-        transform:
-            translateY(110vh)
-            rotate(720deg);
-        opacity: 0;
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
     }
 }
 
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 700px) {
-
-    section {
-        width: min(100% - 28px, 1100px);
+@keyframes heartbeat{
+    0%,100%{
+        transform:scale(1);
     }
-
-    .hero {
-        padding-top: 70px;
-    }
-
-    .hero-image-wrap {
-        width: min(280px, 76vw);
-    }
-
-    .section {
-        padding: 85px 0;
-    }
-
-    .reason-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .game-box {
-        padding: 25px 18px;
-    }
-
-    .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-    }
-
-    .gallery-item,
-    .gallery-item:nth-child(n) {
-        grid-column: span 1;
-        grid-row: span 1;
-
-        min-height: 190px;
-    }
-
-    .gallery-item:nth-child(1),
-    .gallery-item:nth-child(4),
-    .gallery-item:nth-child(7),
-    .gallery-item:nth-child(10) {
-        grid-column: span 2;
-    }
-
-    .gallery-item img {
-        min-height: 190px;
-    }
-
-    .envelope {
-        height: 220px;
-    }
-
-    .envelope-body::before {
-        border-width: 110px 50vw 0 0;
-    }
-
-    .envelope-body::after {
-        border-width: 110px 0 0 50vw;
-    }
-
-    .envelope-label {
-        font-size: 21px;
-    }
-
-    .letter-modal {
-        padding: 12px;
-    }
-
-    .letter-paper {
-        max-height: 92vh;
-        padding: 28px 22px;
-    }
-
-    .letter-text {
-        font-size: 13px;
-        line-height: 1.9;
-    }
-
-    .final-photo {
-        width: 230px;
-        height: 290px;
+    50%{
+        transform:scale(1.15);
     }
 }
 
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: .01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
+@keyframes confettiFall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+@keyframes floatHeart{
+    to{
+        transform:translateY(-110vh);
+        opacity:0;
+    }
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:700px){
+
+    section{
+        padding:90px 0;
+    }
+
+    .hero{
+        min-height:100svh;
+    }
+
+    .hero-photo{
+        width:125px;
+        height:125px;
+    }
+
+    .reason-grid{
+        grid-template-columns:1fr;
+    }
+
+    .gallery{
+        grid-template-columns:repeat(2,1fr);
+        gap:8px;
+    }
+
+    .gallery-item:nth-child(2),
+    .gallery-item:nth-child(5),
+    .gallery-item:nth-child(8){
+        transform:none;
+    }
+
+    .gallery-item{
+        aspect-ratio:1/1.25;
+    }
+
+    .letter{
+        padding:30px 20px;
+    }
+
+    .letter p{
+        font-size:14px;
+        line-height:1.9;
+    }
+
+    .special-message{
+        padding-top:70px;
+    }
+
+    .small-photo{
+        width:110px;
+        height:110px;
+    }
+
+    .special-message-text{
+        font-size:22px;
+    }
+
+    .final{
+        min-height:80svh;
     }
 }
 </style>
@@ -1212,9 +799,9 @@ section {
 
 <body>
 
-<!-- =========================================================
+<!-- =========================
      START SCREEN
-========================================================= -->
+========================= -->
 
 <div id="startScreen">
 
@@ -1226,16 +813,15 @@ section {
 
         <h1>
             ada sesuatu<br>
-            <em>untuk kamu.</em>
+            untuk kamu.
         </h1>
 
         <p>
             sebuah kejutan kecil yang dibuat khusus
-            untuk seseorang yang sedang bertambah usia
-            hari ini.
+            untuk perempuan favoritku.
         </p>
 
-        <button class="open-btn" id="openWebsite">
+        <button class="open-btn" onclick="openWebsite()">
             buka kejutan
         </button>
 
@@ -1244,135 +830,101 @@ section {
 </div>
 
 
-<!-- =========================================================
-     AUDIO
-========================================================= -->
+<!-- =========================
+     MUSIC
+========================= -->
 
 <audio id="music" loop preload="auto">
     <source src="romantic sound.mp3" type="audio/mpeg">
 </audio>
 
-<button
-    class="music-control"
-    id="musicControl"
-    aria-label="Kontrol musik">
+<button class="music-btn" id="musicBtn" onclick="toggleMusic()">
     ♫
 </button>
 
 
-<!-- =========================================================
-     MAIN
-========================================================= -->
-
-<main id="main">
-
-
-<!-- =========================================================
+<!-- =========================
      HERO
-========================================================= -->
+========================= -->
 
-<section class="hero">
+<header class="hero">
 
-    <div class="hero-image-wrap">
+    <div class="hero-inner">
 
         <img
             src="profile .JPG"
+            class="hero-photo"
             alt="Akifa"
-            class="hero-image">
+        >
 
-    </div>
-
-    <div class="hero-text">
-
-        <div class="eyebrow">
+        <div class="hero-date">
             19 September
         </div>
 
-        <h2>
+        <h1>
             happy birthday,<br>
-            <em>Akifa.</em>
-        </h2>
+            Akifa.
+        </h1>
 
         <p class="hero-description">
-            hari ini bukan cuma tentang bertambahnya usia,
-            tapi tentang semua perjalanan, pencapaian,
-            dan hal-hal indah yang masih menunggu kamu
-            di depan sana.
+            hari ini bukan cuma tentang bertambahnya umur kamu,
+            tapi juga tentang merayakan seseorang yang begitu
+            berarti dan spesial dalam hidupku.
         </p>
 
     </div>
 
     <div class="scroll-hint">
-        scroll perlahan
-        <div class="scroll-line"></div>
+        scroll slowly
     </div>
 
-</section>
+</header>
 
 
-<!-- =========================================================
-     GAME
-========================================================= -->
+<!-- =========================
+     MINI GAME
+========================= -->
 
-<section class="section">
+<section class="game-section">
 
-    <div class="section-header">
+    <div class="container">
 
-        <div class="section-number">
-            01 / LITTLE GAME
+        <div class="section-label">
+            a little game
         </div>
 
         <h2 class="section-title">
-            cari <em>3 hati.</em>
+            cari 3 hati.
         </h2>
 
-    </div>
-
-    <div class="game-box">
-
-        <div class="game-title">
-            ada sesuatu yang tersembunyi.
-        </div>
-
-        <p class="game-description">
-            sebelum lanjut, coba temukan tiga hati
-            yang tersembunyi di sini.
+        <p class="section-description" style="margin-left:auto;margin-right:auto;">
+            sebelum lanjut, coba temukan tiga hati yang
+            tersembunyi di bawah ini.
         </p>
 
-        <div class="heart-counter">
-            hati ditemukan:
-            <span id="heartCount">0</span>/3
-        </div>
+        <div class="game-box">
 
-        <div class="hearts-game" id="heartsGame">
+            <div class="game-title">
+                temukan semuanya
+            </div>
 
-            <button class="game-heart"
-                    style="left:15%;top:20%;"
-                    aria-label="hati 1">
-                ♥
-            </button>
+            <div class="game-counter">
+                <span id="heartCount">0</span> / 3 hati
+            </div>
 
-            <button class="game-heart"
-                    style="left:68%;top:55%;"
-                    aria-label="hati 2">
-                ♥
-            </button>
+            <div class="hearts">
 
-            <button class="game-heart"
-                    style="left:43%;top:75%;"
-                    aria-label="hati 3">
-                ♥
-            </button>
+                <button class="heart" onclick="findHeart(this)">
+                    ♥
+                </button>
 
-            <div class="game-success" id="gameSuccess">
+                <button class="heart" onclick="findHeart(this)">
+                    ♥
+                </button>
 
-                <strong>
-                    kamu menemukan semuanya.
-                </strong>
-
-                <span>
-                    sekarang lanjut ke bagian berikutnya.
-                </span>
+                <button class="heart" onclick="findHeart(this)">
+                    ♥
+                </button>
 
             </div>
 
@@ -1383,112 +935,68 @@ section {
 </section>
 
 
-<!-- =========================================================
-     TENTANG KAMU
-========================================================= -->
+<!-- =========================
+     ABOUT HER
+========================= -->
 
-<section class="section">
+<section>
 
-    <div class="section-header">
+    <div class="container">
 
-        <div class="section-number">
-            02 / FOR YOU
+        <div class="section-label">
+            sedikit tentang kamu
         </div>
 
         <h2 class="section-title">
-            sedikit tentang <em>kamu.</em>
+            alasan kenapa<br>
+            kamu begitu berarti.
         </h2>
 
-    </div>
+        <p class="section-description">
+            mungkin aku tidak selalu pandai mengatakannya,
+            tapi ada banyak hal kecil tentang kamu yang
+            selalu aku suka.
+        </p>
 
-    <div class="reason-grid">
+        <div class="reason-grid">
 
-        <div class="reason-card">
-
-            <div class="reason-top">
-                <h3>
-                    kamu yang selalu berusaha
-                </h3>
-
-                <span class="reason-number">
-                    01
-                </span>
+            <div class="reason-card" onclick="toggleReason(this)">
+                <div class="reason-number">01</div>
+                <h3>senyum kamu</h3>
+                <div class="reason-text">
+                    ada sesuatu dari senyum kamu yang selalu
+                    berhasil membuat suasana terasa lebih baik.
+                </div>
             </div>
 
-            <div class="reason-content">
-                <p>
-                    mungkin tidak semuanya mudah,
-                    tapi kamu tetap menjalani semuanya
-                    dengan caramu sendiri.
-                </p>
+            <div class="reason-card" onclick="toggleReason(this)">
+                <div class="reason-number">02</div>
+                <h3>cara kamu bercerita</h3>
+                <div class="reason-text">
+                    aku suka ketika kamu cerita tentang hal-hal
+                    kecil dalam hidup kamu, karena rasanya aku
+                    ikut menjadi bagian dari hari kamu.
+                </div>
             </div>
 
-        </div>
-
-
-        <div class="reason-card">
-
-            <div class="reason-top">
-                <h3>
-                    kamu yang punya mimpi
-                </h3>
-
-                <span class="reason-number">
-                    02
-                </span>
+            <div class="reason-card" onclick="toggleReason(this)">
+                <div class="reason-number">03</div>
+                <h3>sisi kecil kamu</h3>
+                <div class="reason-text">
+                    sisi manja, lucu, bahkan ketika kamu sedang
+                    banyak tingkah. semuanya tetap menjadi bagian
+                    dari kamu yang aku sayang.
+                </div>
             </div>
 
-            <div class="reason-content">
-                <p>
-                    tetap kejar semua wishlist,
-                    cita-cita, dan hal-hal yang selama ini
-                    ingin kamu capai.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="reason-card">
-
-            <div class="reason-top">
-                <h3>
-                    kamu yang tetap bertumbuh
-                </h3>
-
-                <span class="reason-number">
-                    03
-                </span>
-            </div>
-
-            <div class="reason-content">
-                <p>
-                    tidak perlu terburu-buru menjadi sempurna.
-                    pelan-pelan juga tetap merupakan sebuah
-                    kemajuan.
-                </p>
-            </div>
-
-        </div>
-
-
-        <div class="reason-card">
-
-            <div class="reason-top">
-                <h3>
-                    kamu yang pantas dirayakan
-                </h3>
-
-                <span class="reason-number">
-                    04
-                </span>
-            </div>
-
-            <div class="reason-content">
-                <p>
-                    setiap pencapaian kecil maupun besar
-                    tetap layak untuk dirayakan.
-                </p>
+            <div class="reason-card" onclick="toggleReason(this)">
+                <div class="reason-number">04</div>
+                <h3>kamu yang apa adanya</h3>
+                <div class="reason-text">
+                    aku tidak ingin kamu menjadi seseorang yang
+                    berbeda hanya untuk membuat orang lain senang.
+                    tetaplah menjadi kamu.
+                </div>
             </div>
 
         </div>
@@ -1498,86 +1006,78 @@ section {
 </section>
 
 
-<!-- =========================================================
+<!-- =========================
      STORY
-========================================================= -->
+========================= -->
 
-<section class="section">
+<section>
 
-    <div class="section-header">
+    <div class="container">
 
-        <div class="section-number">
-            03 / OUR STORY
+        <div class="section-label">
+            our little story
         </div>
 
         <h2 class="section-title">
-            our little <em>story.</em>
+            beberapa momen.
         </h2>
 
-    </div>
+        <div class="timeline">
 
+            <div class="timeline-item">
 
-    <div class="timeline">
+                <div class="timeline-date">
+                    first
+                </div>
 
-        <div class="timeline-item">
+                <h3>
+                    sejak kita saling mengenal.
+                </h3>
 
-            <div class="timeline-dot"></div>
+                <p>
+                    dari awal mengenal kamu sampai sekarang,
+                    ternyata ada begitu banyak cerita kecil
+                    yang akhirnya menjadi kenangan.
+                </p>
 
-            <div class="timeline-date">
-                first
             </div>
 
-            <h3>
-                dari sebuah pertemuan
-            </h3>
+            <div class="timeline-item">
 
-            <p>
-                ada banyak hal yang awalnya terlihat
-                sederhana, sampai akhirnya menjadi
-                sesuatu yang berarti.
-            </p>
+                <div class="timeline-date">
+                    moment
+                </div>
 
-        </div>
+                <h3>
+                    hari-hari yang kita lewati.
+                </h3>
 
+                <p>
+                    tidak semuanya harus menjadi sesuatu yang
+                    besar. terkadang percakapan sederhana,
+                    tawa kecil, dan waktu bersama sudah cukup
+                    untuk menjadi sesuatu yang berharga.
+                </p>
 
-        <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-date">
-                moment
             </div>
 
-            <h3>
-                banyak cerita yang tercipta
-            </h3>
+            <div class="timeline-item">
 
-            <p>
-                dari hal-hal kecil, obrolan sederhana,
-                sampai momen yang akhirnya tersimpan
-                menjadi kenangan.
-            </p>
+                <div class="timeline-date">
+                    today
+                </div>
 
-        </div>
+                <h3>
+                    hari ulang tahun kamu.
+                </h3>
 
+                <p>
+                    hari ini aku cuma ingin kamu tahu bahwa
+                    aku bersyukur pernah dan masih bisa menjadi
+                    bagian dari perjalanan hidup kamu.
+                </p>
 
-        <div class="timeline-item">
-
-            <div class="timeline-dot"></div>
-
-            <div class="timeline-date">
-                today
             </div>
-
-            <h3>
-                dan hari ini adalah tentang kamu
-            </h3>
-
-            <p>
-                tentang seseorang yang bertambah satu tahun
-                dan masih memiliki begitu banyak cerita
-                yang belum selesai ditulis.
-            </p>
 
         </div>
 
@@ -1586,127 +1086,65 @@ section {
 </section>
 
 
-<!-- =========================================================
+<!-- =========================
      OUR MEMORIES
-========================================================= -->
+     TANPA CAPTION
+========================= -->
 
-<section class="section memories">
+<section class="memories">
 
-    <div class="section-number">
-        04 / MEMORIES
-    </div>
+    <div class="container">
 
-    <h2 class="memories-title">
-        OUR <em>MEMORIES.</em>
-    </h2>
-
-
-    <div class="gallery">
-
-        <div class="gallery-item">
-            <img
-                src="foto 1.JPG"
-                alt="Memory 1"
-                loading="lazy">
-        </div>
-
-        <div class="gallery-item">
-            <img
-                src="foto 2.JPG"
-                alt="Memory 2"
-                loading="lazy">
-        </div>
-
-        <div class="gallery-item">
-            <img
-                src="foto 3.JPG"
-                alt="Memory 3"
-                loading="lazy">
-        </div>
-
-        <div class="gallery-item">
-            <img
-                src="foto 4.JPG"
-                alt="Memory 4"
-                loading="lazy">
-        </div>
-
-        <div class="gallery-item">
-            <img
-                src="foto 5.JPG"
-                alt="Memory 5"
-                loading="lazy">
-        </div>
-
-        <div class="gallery-item">
-            <img
-                src="foto 6.JPG"
-                alt="Memory 6"
-                loading="lazy">
-        </div>
-
-        <div class="gallery-item">
-            <img
-                src="foto 7.JPG"
-                alt="Memory 7"
-                loading="lazy">
-        </div>
-
-        <div class="gallery-item">
-            <img
-                src="foto 8.JPG"
-                alt="Memory 8"
-                loading="lazy">
-        </div>
-
-        <div class="gallery-item">
-            <img
-                src="foto 9.JPG"
-                alt="Memory 9"
-                loading="lazy">
-        </div>
-
-        <div class="gallery-item">
-            <img
-                src="foto 10.JPG"
-                alt="Memory 10"
-                loading="lazy">
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     LETTER
-========================================================= -->
-
-<section class="section letter-section">
-
-    <div class="section-header">
-
-        <div class="section-number">
-            05 / A LETTER
+        <div class="section-label">
+            OUR MEMORIES
         </div>
 
         <h2 class="section-title">
-            ada surat <em>untukmu.</em>
+            OUR MEMORIES
         </h2>
 
-    </div>
+        <div class="gallery">
 
+            <div class="gallery-item">
+                <img src="foto 1.JPG" alt="memory 1">
+            </div>
 
-    <div
-        class="envelope"
-        id="envelope">
+            <div class="gallery-item">
+                <img src="foto 2.JPG" alt="memory 2">
+            </div>
 
-        <div class="envelope-body"></div>
+            <div class="gallery-item">
+                <img src="foto 3.JPG" alt="memory 3">
+            </div>
 
-        <div class="envelope-flap"></div>
+            <div class="gallery-item">
+                <img src="foto 4.JPG" alt="memory 4">
+            </div>
 
-        <div class="envelope-label">
-            untuk akifa
+            <div class="gallery-item">
+                <img src="foto 5.JPG" alt="memory 5">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto 6.JPG" alt="memory 6">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto 7.JPG" alt="memory 7">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto 8.JPG" alt="memory 8">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto 9.JPG" alt="memory 9">
+            </div>
+
+            <div class="gallery-item">
+                <img src="foto 10.JPG" alt="memory 10">
+            </div>
+
         </div>
 
     </div>
@@ -1714,443 +1152,421 @@ section {
 </section>
 
 
-<!-- =========================================================
-     FINAL
-========================================================= -->
+<!-- =========================
+     FOTO KECIL + PESAN TAMBAHAN
+========================= -->
 
-<section class="final-section">
+<section class="special-message">
 
-    <img
-        src="tambahan.JPG"
-        alt="Akifa"
-        class="final-photo"
-        loading="lazy">
+    <div class="container">
 
-    <h2>
-        happy<br>
-        birthday.
-    </h2>
+        <div class="small-photo-wrap">
 
-    <div class="final-name">
-        Akifa Naila
-    </div>
+            <img
+                src="foto kecil.JPG"
+                alt="Akifa"
+                class="small-photo"
+            >
 
-    <p class="final-message">
-        semoga umur yang baru ini membawa lebih banyak
-        kebahagiaan, kesehatan, rezeki, pencapaian,
-        dan alasan untuk tersenyum.
-    </p>
+        </div>
 
-    <div class="final-love">
-        keep growing, keep smiling.
-    </div>
+        <div class="section-label">
+            one more thing
+        </div>
 
-    <div class="signature">
-        — RAPI
+        <p class="special-message-text">
+            “di foto kamu itu kamu sangat bahagia dan
+            tersenyum manis sekali, jadi aku akan jadi orang
+            yang selalu jaga kebahagiaan dan senyum manis
+            kamu ituu sampai kapanpun dan gimanapun caranya.”
+        </p>
+
     </div>
 
 </section>
 
 
-</main>
+<!-- =========================
+     LETTER
+========================= -->
+
+<section class="letter-section">
+
+    <div class="container">
+
+        <div class="section-label">
+            a letter for you
+        </div>
+
+        <h2 class="section-title">
+            ada surat kecil.
+        </h2>
+
+        <p class="section-description" style="margin-left:auto;margin-right:auto;">
+            buka pelan-pelan.
+        </p>
+
+        <div class="envelope" id="envelope" onclick="openLetter()">
+
+            <div class="envelope-body"></div>
+
+            <div class="envelope-flap"></div>
+
+            <div class="envelope-heart">
+                ♥
+            </div>
+
+        </div>
 
 
-<!-- =========================================================
-     LIGHTBOX
-========================================================= -->
+        <div class="letter" id="letter">
 
-<div
-    class="lightbox"
-    id="lightbox">
+            <h3 class="letter-title">
+                untuk perempuan favoritku.
+            </h3>
 
-    <button
-        class="lightbox-close"
-        id="lightboxClose"
-        aria-label="Tutup">
-        ×
-    </button>
+            <p>
+                haloo perempuan favorit ku di tanggal 19 september
+                ini kamu bertambah umurnya, aku mau kamu baca pesan
+                ini dari aku yaa.
+            </p>
 
-    <img
-        id="lightboxImage"
-        src=""
-        alt="Memory">
+            <p>
+                aku harap kamu di saat bertambah umur ini menjadi
+                perempuan sering berbuat baik dalam hal apapun,
+                panjang umur, sehat selalu, dan selalu jadi perempuan
+                yang selalu cantik berhati bersih pinter bijak banyak
+                uang itu yaa aamiin yarobal allaminn.
+            </p>
 
-</div>
+            <p>
+                Kamu harus inget ini adalah baru masa pertumbuhan kamu
+                dan kamu harus tetep semangat dalam menjalani kehidupan
+                ini, aku bakal jadi seseorang yang ada di kehidupan kamu
+                disaat kamu sedang menjalani ini semua.
+            </p>
+
+            <p>
+                aku akan selalu disini sayang kamu cintai kamu setulus
+                hatiku, aku temenin kamu disela sela kamu lagi cape atau
+                butuh tempat cerita pasti aku akan luangin waktu aku
+                untuk kamu.
+            </p>
+
+            <p>
+                capaii semua mimpi kamuu ituu yaaa wishlist kamu dan
+                cita cita kamuu yang kamu impikan itu,
+                i will be proud of you disaat kamu bisa capai semua itu
+                jika emang harus pelan' aku akan selalu merayakan
+                pencapaian kamu di dunia ini..
+            </p>
+
+            <p>
+                Aku sayang banget sama kamu cinta banget sama kamu aku
+                cuma harap kita bisa tetep komunikasi lebih baik dan jauh
+                lebih baik saat ini, aku gapernah bosen ataupun nyesel
+                kenal kamu semenjak kenal kamu hidupku banyak senengnya
+                banyak manjanya karena kamu selalu anggep aku bayi kecil
+                kamu, aku gamau kehilangan ituu.
+            </p>
+
+            <p>
+                terimakasih banyak untuk kamu karena uda berjuang sejauh
+                ini dan usaha kamu selama ini disaat umur kamu belasan ini
+                semoga kamu tetep terus konsisten dengan pencapaian kamu
+                ini ya, dan soal kalo cape atau butuh tempat cerita bisa
+                ke aku ya?aku akan selalu respon cerita kamu dengan baik
+                karena aku seneng kamu cerita sama akuu soal hidup kamuu.
+            </p>
+
+            <p>
+                Jangan kurangin ya nangis nya kalo capee karena itu ga baik
+                walaupun after kamu nangis kamu jauh lebih baik tapi bagiku
+                itu gaada yang baik kalo kamu kalo cape harus nangis...
+                aku gamau dan ga tega liat kamu nangis aku maunya kamu
+                nangis dengan semua pencapaian kamu nanti, di kurangin
+                pelan' ya sayangg aku ga buru'in kamu.
+            </p>
+
+            <p>
+                aku disini akan selalu disini untuk kamu kapanpun dan
+                dimanapun ituu sayangg, aku juga minta maaf ya kalo aku
+                suka buat salah sama kamu bandel sama kamu maaf selama
+                hubungan sama aku terkadang bosen.
+            </p>
+
+            <p>
+                aku akan tunggu cinta yang setara dari kamu versi terbaik
+                kamu mulai sekarang inii aku akan selalu nunggu banget
+                moment itu dan jika kamu bisa buktiin ke aku aku bakalan
+                bangga dan seneng karena kamu bisa tepatin omongan itu
+                ke aku, terimakasih ya sayangku bakpaoo aku yang paling
+                gemes iniii.
+            </p>
+
+            <p class="big-ending">
+                AKUUU SAYANGG KAMU CINTA KAMU SELAMANYA
+                AKIFA NAILA ASSYIFATU SAHRA.
+                <br><br>
+                🤍🤍
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-<!-- =========================================================
-     LETTER MODAL
-========================================================= -->
+<!-- =========================
+     FINAL
+========================= -->
 
-<div
-    class="letter-modal"
-    id="letterModal">
+<section class="final">
 
-    <div class="letter-paper">
+    <div class="container final-content">
 
-        <button
-            class="letter-close"
-            id="letterClose"
-            aria-label="Tutup surat">
-            ×
-        </button>
+        <img
+            src="tambahan.JPG"
+            class="final-photo"
+            alt="Akifa"
+        >
 
         <h2>
-            untuk kamu.
+            happy birthday.
         </h2>
 
-        <div class="letter-text">haloo perempuan favorit ku di tanggal 19 september ini kamu bertambah umurnya, aku mau kamu baca pesan ini dari aku yaa.
+        <div class="final-name">
+            Akifa Naila
+        </div>
 
-aku harap kamu di saat bertambah umur ini menjadi perempuan sering berbuat baik dalam hal apapun, panjang umur, sehat selalu, dan selalu jadi perempuan yang selalu cantik berhati bersih pinter bijak banyak uang itu yaa aamiin yarobal allaminn.
+        <p>
+            semoga di umur yang baru ini kamu semakin dekat
+            dengan semua hal yang kamu impikan.
+            semoga kamu selalu sehat, bahagia, dan dikelilingi
+            oleh orang-orang yang menyayangi kamu.
+        </p>
 
-Kamu harus inget ini adalah baru masa pertumbuhan kamu dan kamu harus tetep semangat dalam menjalani kehidupan ini, aku bakal jadi seseorang yang ada di kehidupan kamu disaat kamu sedang menjalani ini semua.
-
-aku akan selalu disini sayang kamu cintai kamu setulus hatiku, aku temenin kamu disela sela kamu lagi cape atau butuh tempat cerita pasti aku akan luangin waktu aku untuk kamu.
-
-capaii semua mimpi kamuu ituu yaaa wishlist kamu dan cita cita kamuu yang kamu impikan itu,
-
-i will be proud of you disaat kamu bisa capai semua itu jika emang harus pelan' aku akan selalu merayakan pencapaian kamu di dunia ini..
-
-Aku sayang banget sama kamu cinta banget sama kamu aku cuma harap kita bisa tetep komunikasi lebih baik dan jauh lebih baik saat ini, aku gapernah bosen ataupun nyesel kenal kamu semenjak kenal kamu hidupku banyak senengnya banyak manjanya karena kamu selalu  anggep aku bayi kecil kamu, aku gamau kehilangan ituu.
-
-terimakasih banyak untuk kamu karena uda berjuang sejauh ini dan usaha kamu selama ini disaat umur kamu belasan ini semoga kamu tetep terus konsisten dengan pencapaian kamu ini ya, dan soal kalo cape atau butuh tempat cerita bisa ke aku ya?aku akan selalu respon cerita kamu dengan baik karena aku seneng kamu cerita sama akuu soal hidup kamuu.
-
-Jangan kurangin ya nangis nya kalo capee karena itu ga baik walaupun after kamu nangis kamu jauh lebih baik tapi bagiku itu gaada yang baik kalo kamu kalo cape harus nangis... aku gamau dan ga tega liat kamu nangis aku maunya kamu nangis dengan semua pencapaian kamu nanti, di kurangin pelan' ya sayangg aku ga buru'in kamu.
-
-aku disini akan selalu disini untuk kamu kapanpun dan dimanapun ituu sayangg, aku juga minta maaf ya kalo aku suka buat salah sama kamu bandel sama kamu maaf selama hubungan sama aku terkadang bosen.
-
-aku akan tunggu cinta yang setara dari kamu versi terbaik kamu mulai sekarang inii aku akan selalu nunggu banget moment itu dan jika kamu bisa buktiin ke aku aku bakalan bangga dan seneng karena kamu bisa tepatin omongan itu ke aku, terimakasih ya sayangku bakpaoo aku yang paling gemes iniii.
-
-AKUUU SAYANGG KAMU CINTA KAMU SELAMANYA AKIFA NAILA ASSYIFATU SAHRA.
-
-🤍🤍</div>
-
-        <div class="letter-signature">
+        <div class="signature">
             — RAPI
         </div>
 
     </div>
 
-</div>
+</section>
 
 
 <script>
 
-/* =========================================================
+/* =========================
    START WEBSITE
-========================================================= */
-
-const startScreen = document.getElementById("startScreen");
-const openWebsite = document.getElementById("openWebsite");
-const main = document.getElementById("main");
+========================= */
 
 const music = document.getElementById("music");
-const musicControl = document.getElementById("musicControl");
+const startScreen = document.getElementById("startScreen");
+const musicBtn = document.getElementById("musicBtn");
 
-openWebsite.addEventListener("click", async () => {
+let musicPlaying = false;
+
+function openWebsite(){
 
     startScreen.classList.add("hide");
-    main.classList.add("show");
-    musicControl.classList.add("show");
 
-    try {
-        await music.play();
-        musicControl.textContent = "♫";
-    } catch (error) {
-        musicControl.textContent = "▶";
-    }
+    music.volume = 0.55;
 
-    startFloatingHearts();
-
-});
-
-
-/* =========================================================
-   MUSIC CONTROL
-========================================================= */
-
-musicControl.addEventListener("click", async () => {
-
-    if (music.paused) {
-
-        try {
-            await music.play();
-            musicControl.textContent = "♫";
-        } catch (error) {
-            console.log(error);
-        }
-
-    } else {
-
-        music.pause();
-        musicControl.textContent = "▶";
-
-    }
-
-});
-
-
-/* =========================================================
-   REASON CARDS
-========================================================= */
-
-document.querySelectorAll(".reason-card").forEach(card => {
-
-    card.addEventListener("click", () => {
-
-        card.classList.toggle("active");
-
+    music.play()
+    .then(() => {
+        musicPlaying = true;
+        musicBtn.innerHTML = "Ⅱ";
+    })
+    .catch(() => {
+        musicPlaying = false;
     });
 
-});
+    createFloatingHearts();
+}
 
 
-/* =========================================================
-   MINI GAME
-========================================================= */
+/* =========================
+   MUSIC
+========================= */
 
-const hearts = document.querySelectorAll(".game-heart");
-const heartCount = document.getElementById("heartCount");
-const gameSuccess = document.getElementById("gameSuccess");
+function toggleMusic(){
+
+    if(musicPlaying){
+
+        music.pause();
+
+        musicPlaying = false;
+
+        musicBtn.innerHTML = "♫";
+
+    }else{
+
+        music.play()
+        .then(() => {
+
+            musicPlaying = true;
+
+            musicBtn.innerHTML = "Ⅱ";
+
+        })
+        .catch(() => {});
+
+    }
+
+}
+
+
+/* =========================
+   HEART GAME
+========================= */
 
 let foundHearts = 0;
 
-hearts.forEach(heart => {
+function findHeart(element){
 
-    heart.addEventListener("click", () => {
+    if(element.classList.contains("found")) return;
 
-        if (heart.classList.contains("found")) {
-            return;
-        }
+    element.classList.add("found");
 
-        heart.classList.add("found");
+    foundHearts++;
 
-        foundHearts++;
+    document.getElementById("heartCount").textContent = foundHearts;
 
-        heartCount.textContent = foundHearts;
-
-        if (foundHearts === 3) {
-
-            gameSuccess.classList.add("show");
-
-            createConfetti(70);
-
-        }
-
-    });
-
-});
-
-
-/* =========================================================
-   ENVELOPE
-========================================================= */
-
-const envelope = document.getElementById("envelope");
-const letterModal = document.getElementById("letterModal");
-const letterClose = document.getElementById("letterClose");
-
-envelope.addEventListener("click", () => {
-
-    envelope.classList.add("open");
-
-    setTimeout(() => {
-
-        letterModal.classList.add("show");
-
-    }, 650);
-
-});
-
-
-letterClose.addEventListener("click", () => {
-
-    letterModal.classList.remove("show");
-
-});
-
-
-letterModal.addEventListener("click", event => {
-
-    if (event.target === letterModal) {
-
-        letterModal.classList.remove("show");
-
-    }
-
-});
-
-
-/* =========================================================
-   LIGHTBOX GALLERY
-========================================================= */
-
-const lightbox = document.getElementById("lightbox");
-const lightboxImage = document.getElementById("lightboxImage");
-const lightboxClose = document.getElementById("lightboxClose");
-
-document.querySelectorAll(".gallery-item img").forEach(img => {
-
-    img.addEventListener("click", () => {
-
-        lightboxImage.src = img.src;
-
-        lightbox.classList.add("show");
-
-    });
-
-});
-
-
-lightboxClose.addEventListener("click", () => {
-
-    lightbox.classList.remove("show");
-
-});
-
-
-lightbox.addEventListener("click", event => {
-
-    if (event.target === lightbox) {
-
-        lightbox.classList.remove("show");
-
-    }
-
-});
-
-
-/* =========================================================
-   ESC KEY
-========================================================= */
-
-document.addEventListener("keydown", event => {
-
-    if (event.key === "Escape") {
-
-        lightbox.classList.remove("show");
-        letterModal.classList.remove("show");
-
-    }
-
-});
-
-
-/* =========================================================
-   FLOATING HEARTS
-========================================================= */
-
-function createFloatingHeart() {
-
-    const heart = document.createElement("div");
-
-    heart.className = "floating-heart";
-
-    heart.textContent = Math.random() > .5 ? "♥" : "♡";
-
-    heart.style.left = Math.random() * 100 + "vw";
-
-    heart.style.fontSize =
-        (12 + Math.random() * 20) + "px";
-
-    heart.style.setProperty(
-        "--drift",
-        (-80 + Math.random() * 160) + "px"
-    );
-
-    heart.style.animationDuration =
-        (5 + Math.random() * 5) + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-
-        heart.remove();
-
-    }, 10000);
-
-}
-
-
-let floatingInterval;
-
-function startFloatingHearts() {
-
-    if (floatingInterval) {
-        return;
-    }
-
-    floatingInterval = setInterval(
-        createFloatingHeart,
-        1800
-    );
-
-}
-
-
-/* =========================================================
-   CONFETTI
-========================================================= */
-
-function createConfetti(amount = 50) {
-
-    for (let i = 0; i < amount; i++) {
-
-        const piece = document.createElement("div");
-
-        piece.className = "confetti";
-
-        piece.style.left =
-            Math.random() * 100 + "vw";
-
-        piece.style.width =
-            (4 + Math.random() * 7) + "px";
-
-        piece.style.height =
-            (6 + Math.random() * 12) + "px";
-
-        piece.style.opacity =
-            .6 + Math.random() * .4;
-
-        piece.style.transform =
-            `rotate(${Math.random() * 360}deg)`;
-
-        piece.style.animationDuration =
-            (2 + Math.random() * 2) + "s";
-
-        piece.style.animationDelay =
-            Math.random() * .5 + "s";
-
-        document.body.appendChild(piece);
+    if(foundHearts === 3){
 
         setTimeout(() => {
 
-            piece.remove();
+            createConfetti();
 
-        }, 5000);
+            alert("semua hati berhasil ditemukan 🤍");
+
+        },200);
 
     }
 
 }
 
 
-/* =========================================================
-   IMAGE ERROR HANDLER
-   Membantu mengecek nama file jika ada typo.
-========================================================= */
+/* =========================
+   REASON CARDS
+========================= */
 
-document.querySelectorAll("img").forEach(img => {
+function toggleReason(card){
 
-    img.addEventListener("error", () => {
+    card.classList.toggle("active");
 
-        console.warn(
-            "Gagal memuat gambar:",
-            img.getAttribute("src")
-        );
+}
 
-    });
 
-});
+/* =========================
+   LETTER
+========================= */
+
+function openLetter(){
+
+    const envelope = document.getElementById("envelope");
+    const letter = document.getElementById("letter");
+
+    envelope.classList.toggle("open");
+
+    setTimeout(() => {
+
+        letter.classList.toggle("show");
+
+        if(letter.classList.contains("show")){
+
+            setTimeout(() => {
+
+                letter.scrollIntoView({
+                    behavior:"smooth",
+                    block:"center"
+                });
+
+            },100);
+
+        }
+
+    },450);
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti(){
+
+    const symbols = ["♥","✦","•","♡","✧"];
+
+    for(let i = 0; i < 70; i++){
+
+        const confetti = document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.innerHTML =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        confetti.style.left =
+            Math.random() * 100 + "vw";
+
+        confetti.style.fontSize =
+            (8 + Math.random() * 12) + "px";
+
+        confetti.style.animationDuration =
+            (2 + Math.random() * 2) + "s";
+
+        confetti.style.animationDelay =
+            Math.random() * .8 + "s";
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+            confetti.remove();
+        },4500);
+
+    }
+
+}
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+function createFloatingHearts(){
+
+    setInterval(() => {
+
+        if(Math.random() > .65) return;
+
+        const heart = document.createElement("div");
+
+        heart.className = "floating-heart";
+
+        heart.innerHTML = "♡";
+
+        heart.style.left =
+            Math.random() * 100 + "vw";
+
+        heart.style.fontSize =
+            (12 + Math.random() * 20) + "px";
+
+        heart.style.animationDuration =
+            (7 + Math.random() * 8) + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        },15000);
+
+    },1200);
+
+}
 
 </script>
 
